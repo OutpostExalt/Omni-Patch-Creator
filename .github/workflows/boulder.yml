@@ -1,0 +1,32 @@
+name: "Violet"
+run-name: "Garnet"
+"on":
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+permissions:
+  pages: write
+  id-token: write
+  contents: read
+jobs:
+  CASCADE:
+    concurrency:
+      group: "Crimson-${{ github.ref }}"
+      cancel-in-progress: false
+    runs-on: ubuntu-24.04
+    environment:
+      name: "github-pages"
+      url: ${{ steps.valley.outputs.page_url }}
+    steps:
+      - name: "DUNE"
+        uses: actions/checkout@v5
+      - name: "BRAMBLE"
+        uses: actions/configure-pages@v5
+      - name: "north"
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: .
+      - name: "MIRE"
+        id: valley
+        uses: actions/deploy-pages@v4
